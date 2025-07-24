@@ -63,7 +63,7 @@ const events = [
   }
 ];
 
-function EventCard({ event, position }: { event: typeof events[0], position: 'left' | 'center' | 'right' }) {
+function EventCard({ event, position }) {
   const borderClasses = {
     left: "border-[0.5px] border-dashed border-black/60",
     center: "border-t-[0.5px] border-r-[0.5px] border-b-[0.5px] border-dashed border-black/60",

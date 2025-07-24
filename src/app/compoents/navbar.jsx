@@ -39,7 +39,7 @@ export function Navbar() {
 
         {/* CTA Button */}
         <div className="flex-shrink-0">
-          <button className="bg-brand-orange px-4 py-4 text-white font-urbanist text-base font-medium hover:bg-orange-600 transition-colors">
+          <button className="bg-brand-orange px-4 py-4 text-white font-urbanist text-base font-medium hover:bg-orange-700 bg-orange-600 transition-colors">
             Request New :80
           </button>
         </div>

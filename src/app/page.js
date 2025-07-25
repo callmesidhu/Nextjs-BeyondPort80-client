@@ -5,7 +5,7 @@ import { Navbar } from './compoents/navbar'
 
 function page() {
   return (
-    <div>
+    <div className=''>
       <Navbar />
       <BannerImages />
       <Hero />

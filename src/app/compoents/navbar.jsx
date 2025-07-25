@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Navbar() {
   return (
-    <nav className="w-full px-8 py-6 lg:px-[120px] lg:py-[45px]">
+    <nav className="w-full px-8  lg:px-[120px] py-6">
       <div className="flex items-center justify-between w-full max-w-screen-xl mx-auto">
         {/* Logo */}
         <div className="flex-shrink-0">

@@ -3,7 +3,7 @@ export default function HeroSection() {
     <section className="w-full relative">
       {/* Background UX:80 Pattern - positioned absolutely to span full width */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-20 pointer-events-none">
-        <div className="flex items-center gap-6 text-[128px] font-bold font-urbanist text-black whitespace-nowrap">
+        <div className="flex items-center gap-6 text-[100px] md:text-[128px] font-bold font-urbanist text-black whitespace-nowrap">
           <span>UX:80</span>
           <span>UX:80</span>
           <span>UX:80</span>
@@ -20,7 +20,7 @@ export default function HeroSection() {
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/ae7775ab8fecde7675989a643444d995851e1caa?width=1168"
               alt="UX:80 Sunday Service Celebration"
-              className="w-full max-w-[584px] h-auto aspect-[584/316] object-cover shadow-[0_4px_9.2px_1px_rgba(0,0,0,0.10)]"
+              className="w-full max-w-[584px] h-auto aspect-[584/316] object-cover shadow-[0_4px_9.2px_1px_rgba(0,0,0,0.10)] "
             />
           </div>
 

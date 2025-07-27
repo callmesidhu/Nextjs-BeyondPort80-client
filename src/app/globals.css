@@ -1,10 +1,35 @@
 @import "tailwindcss";
 
+
+@layer base {
+  @font-face {
+    font-family: "Advio";
+    src: url("/fonts/advio.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("/fonts/satoshi.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+
+
 :root {
   --background: #ffffff;
   --foreground: #000000;
+   --font-satoshi: 'Satoshi', sans-serif;
+  --font-advio: 'Advio', sans-serif;
+ 
 }
 
+<<<<<<< HEAD
 @layer utilities {
   .border-custom-dash {
     border-width: 1.5px;
@@ -13,3 +38,30 @@
     border-image: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 10px, transparent 10px, transparent 20px) 100%;
   }
 }
+=======
+
+.font-urbanist {
+  font-family: var(--font-urbanist);
+}
+
+.font-vina-sans {
+  font-family: var(--font-vina-sans);
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
+}
+
+.font-unbounded {
+  font-family: var(--font-unbounded);
+}
+
+.font-antonio {
+  font-family: var(--font-antonio);
+}
+
+.font-tiny5 {
+  font-family: var(--font-tiny5);
+}
+
+>>>>>>> be16cdabd23d48245ca84c334171cf9591104054

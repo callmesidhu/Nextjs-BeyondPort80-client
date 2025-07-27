@@ -71,13 +71,13 @@ function EventCard({ event, position }) {
   };
 
   return (
-    <div className={`flex flex-col w-[342px] ${borderClasses[position]}`}>
+    <div className={`flex flex-col md:w-[342px] ${borderClasses[position]}`}>
       <img
         src={event.image}
         alt={event.title}
-        className="w-full h-[185px] object-cover"
+        className="w-full h-[185px] object-cover "
       />
-      <div className="flex flex-col gap-6 w-[320px] px-2 py-6">
+      <div className="flex flex-col gap-6 px-2 py-6">
         <h3 className="font-urbanist text-xl font-bold text-black leading-normal">
           {event.title}
         </h3>
@@ -128,34 +128,34 @@ function EventCard({ event, position }) {
 
 export function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
-      <div className="flex flex-col items-center gap-[81px] pt-[32px] pb-[160px] px-[120px]">
+    <div className="min-h-screen ">
+      <div className="flex flex-col items-center md:gap-[81px] md:pt-[32px] md:pb-[160px] md:px-[120px]">
         {/* Hero Section */}
-        <div className="flex flex-col items-center gap-[72px] w-full max-w-[1138px]">
-          <div className="flex flex-col items-center gap-4 w-[653px]">
+        <div className="flex flex-col items-center gap-[72px] w-full md:max-w-[1138px]">
+          <div className="flex flex-col items-center gap-4 md:w-[653px] w-[300px]">
             <h1 className="font-urbanist text-[64px] font-bold text-black text-center leading-normal">
               UX:80
             </h1>
             <p className="font-urbanist text-xl font-normal text-black text-center leading-normal">
               Connect with UX enthusiasts to design user-centric experiences.
             </p>
-            
+
             {/* Event Details */}
-            <div className="flex items-start gap-6 self-stretch">
+            <div className="mt-4 flex flex-row flex-wrap gap-6 self-stretch">
               <div className="flex items-center gap-2">
                 <Clock className="w-6 h-6 text-black/70" strokeWidth={2} />
                 <span className="font-urbanist text-base font-normal text-black/70">
                   05:00 PM
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Calendar className="w-6 h-6 text-black/70" strokeWidth={2} />
                 <span className="font-urbanist text-base font-normal text-black/70">
                   Every First Thursday
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <MapPin className="w-6 h-6 text-black/70" strokeWidth={2} />
                 <span className="font-urbanist text-base font-normal text-black/70">
@@ -163,23 +163,23 @@ export function HomePage() {
                 </span>
               </div>
             </div>
-            
-            <p className="font-urbanist text-base font-normal text-black/70 text-center w-[653px]">
+
+            <p className="mt-2 font-urbanist text-base font-normal text-black text-center w-[653px]">
               Contact Team: uxport80@gmail.com
             </p>
           </div>
 
           {/* Events Grid */}
-          <div className="flex flex-col items-start gap-6 self-stretch">
+          <div className="flex flex-col w-[98%]  p-4">
             {/* First Row */}
-            <div className="flex justify-center items-center self-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-3 w-full ">
               <EventCard event={events[0]} position="left" />
               <EventCard event={events[1]} position="center" />
               <EventCard event={events[2]} position="right" />
             </div>
-            
+
             {/* Second Row */}
-            <div className="flex justify-center items-center self-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-3 w-full ">
               <EventCard event={events[3]} position="left" />
               <EventCard event={events[4]} position="center" />
               <EventCard event={events[5]} position="right" />

@@ -29,7 +29,6 @@
  
 }
 
-<<<<<<< HEAD
 @layer utilities {
   .border-custom-dash {
     border-width: 1.5px;
@@ -38,7 +37,6 @@
     border-image: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 10px, transparent 10px, transparent 20px) 100%;
   }
 }
-=======
 
 .font-urbanist {
   font-family: var(--font-urbanist);
@@ -63,5 +61,3 @@
 .font-tiny5 {
   font-family: var(--font-tiny5);
 }
-
->>>>>>> be16cdabd23d48245ca84c334171cf9591104054

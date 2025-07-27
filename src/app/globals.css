@@ -4,3 +4,12 @@
   --background: #ffffff;
   --foreground: #000000;
 }
+
+@layer utilities {
+  .border-custom-dash {
+    border-width: 1.5px;
+    border-style: dashed;
+    border-color: rgba(0, 0, 0, 0.3);
+    border-image: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 10px, transparent 10px, transparent 20px) 100%;
+  }
+}

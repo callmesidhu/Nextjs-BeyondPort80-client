@@ -8,7 +8,7 @@ const events = [
     title: "UX:80",
     location: "Trivandrum,Kerala",
     fontFamily: "font-vina-sans",
-    fontSize: "text-6xl sm:text-5xl lg:text-7xl xl:text-8xl",
+    fontSize: "text-4xl sm:text-5xl lg:text-7xl xl:text-8xl",
     style: "tracking-wide",
   },
   {

@@ -14,13 +14,12 @@ export default function InfiniteScrollBanner() {
     "https://api.builder.io/api/v1/image/assets/TEMP/1095452a355abecc33fffeefaae4a5ab3d19e94e?width=868",
   ];
 
-  const allImages = [...images, ...images, ...images];
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
 
-    const scrollSpeed = 1.5;
+    const scrollSpeed = 15;
 
     const onWheel = (e) => {
       e.preventDefault();
@@ -58,7 +57,7 @@ export default function InfiniteScrollBanner() {
         className="flex overflow-x-scroll overflow-y-hidden gap-6 scroll-smooth scrollbar-hide px-4"
         style={{ scrollBehavior: "smooth" }}
       >
-        {allImages.map((src, index) => (
+        {images.map((src, index) => (
           <div
             key={index}
             className="w-[434px] h-[282px] flex-shrink-0 rounded-xl overflow-hidden"

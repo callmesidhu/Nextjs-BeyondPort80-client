@@ -61,3 +61,12 @@
 .font-tiny5 {
   font-family: var(--font-tiny5);
 }
+
+/* globals.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

@@ -30,7 +30,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header
+     
       <header className="flex justify-between items-center px-6 md:px-[120px] py-[45px]">
         <div className="flex items-center">
           <img 
@@ -50,10 +50,10 @@ export default function Index() {
             Speakers
           </button>
         </nav>
-      </header> */}
+      </header> 
 
       {/* Main Content */}
-      <main className="mt-4 mx-2 px-8  md:px-[120px] pb-20">
+      <main className="mt-20 mx-2 px-12 md:px-32 pb-20">
         <div className="flex flex-col lg:flex-row lg:justify-end lg:items-start gap-8 lg:gap-[98px]">
           {/* Left Side - Description */}
           <div className="flex-1 lg:max-w-md">

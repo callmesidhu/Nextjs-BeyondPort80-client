@@ -1,71 +1,76 @@
-export function BannerImages() {
+"use client";
+
+import { useEffect, useRef } from "react";
+
+export default function InfiniteScrollBanner() {
+  const scrollRef = useRef(null);
+  const isAnimating = useRef(false);
+
   const images = [
-    {
-      src: "https://api.builder.io/api/v1/image/assets/TEMP/ad33659c33381eac40061641b81f19d65a13ad9f?width=868",
-      alt: "Banner image 1"
-    },
-    {
-      src: "https://api.builder.io/api/v1/image/assets/TEMP/ad33659c33381eac40061641b81f19d65a13ad9f?width=868", 
-      alt: "Banner image 2"
-    },
-    {
-      src: "https://api.builder.io/api/v1/image/assets/TEMP/e2156e29035bdcb5eb1e1239f847d22b20d75409?width=868",
-      alt: "Banner image 3"
-    },
-    {
-      src: "https://api.builder.io/api/v1/image/assets/TEMP/3f76a30de452db493e02e953a64a93d202fc5095?width=868",
-      alt: "Banner image 4"
-    },
-    {
-      src: "https://api.builder.io/api/v1/image/assets/TEMP/4492e5b83f35718bc77d197870a26dcc0e00db00?width=868",
-      alt: "Banner image 5"
-    },
-    {
-      src: "https://api.builder.io/api/v1/image/assets/TEMP/1095452a355abecc33fffeefaae4a5ab3d19e94e?width=868",
-      alt: "Banner image 6"
-    }
+    "https://api.builder.io/api/v1/image/assets/TEMP/ad33659c33381eac40061641b81f19d65a13ad9f?width=868",
+    "https://api.builder.io/api/v1/image/assets/TEMP/e2156e29035bdcb5eb1e1239f847d22b20d75409?width=868",
+    "https://api.builder.io/api/v1/image/assets/TEMP/3f76a30de452db493e02e953a64a93d202fc5095?width=868",
+    "https://api.builder.io/api/v1/image/assets/TEMP/4492e5b83f35718bc77d197870a26dcc0e00db00?width=868",
+    "https://api.builder.io/api/v1/image/assets/TEMP/1095452a355abecc33fffeefaae4a5ab3d19e94e?width=868",
   ];
 
+  const allImages = [...images, ...images, ...images];
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const scrollSpeed = 1.5;
+
+    const onWheel = (e) => {
+      e.preventDefault();
+      if (!isAnimating.current) {
+        isAnimating.current = true;
+        requestAnimationFrame(() => {
+          container.scrollLeft += e.deltaY * scrollSpeed;
+
+          const scrollWidth = container.scrollWidth;
+          const containerWidth = container.offsetWidth;
+
+          if (container.scrollLeft <= 0) {
+            container.scrollLeft = scrollWidth / 3;
+          } else if (container.scrollLeft >= (scrollWidth * 2) / 3) {
+            container.scrollLeft = scrollWidth / 3;
+          }
+
+          isAnimating.current = false;
+        });
+      }
+    };
+
+    container.scrollLeft = container.scrollWidth / 3;
+    container.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+      container.removeEventListener("wheel", onWheel);
+    };
+  }, []);
+
   return (
-    <div className="w-full overflow-hidden">
-      {/* Desktop: Horizontal scrolling row */}
-      <div className="hidden lg:flex gap-9 justify-end pr-0">
-        {images.map((image, index) => (
-          <div key={index} className="flex-shrink-0">
-            <img 
-              src={image.src} 
-              alt={image.alt}
-              className="w-[434px] h-[282px] object-cover"
-            />
-          </div>
-        ))}
-      </div>
-      
-      {/* Tablet: 2x3 grid */}
-      <div className="hidden md:grid lg:hidden grid-cols-2 gap-4 px-8">
-        {images.map((image, index) => (
-          <div key={index} className="aspect-[434/282]">
-            <img 
-              src={image.src} 
-              alt={image.alt}
+    <section className="w-full bg-white">
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-scroll overflow-y-hidden gap-6 scroll-smooth scrollbar-hide px-4"
+        style={{ scrollBehavior: "smooth" }}
+      >
+        {allImages.map((src, index) => (
+          <div
+            key={index}
+            className="w-[434px] h-[282px] flex-shrink-0 rounded-xl overflow-hidden"
+          >
+            <img
+              src={src}
+              alt={`Banner ${index}`}
               className="w-full h-full object-cover"
             />
           </div>
         ))}
       </div>
-      
-      {/* Mobile: Single column */}
-      <div className="grid md:hidden grid-cols-1 gap-4 px-4">
-        {images.slice(0, 3).map((image, index) => (
-          <div key={index} className="aspect-[434/282]">
-            <img 
-              src={image.src} 
-              alt={image.alt}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }

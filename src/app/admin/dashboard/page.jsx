@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Landing from "@/app/compoents/admin/landing";
-import InterestGroups from "@/app/compoents/admin/intrest";
-import Request from "@/app/compoents/admin/request";
-import Sidebar from "@/app/compoents/admin/sidebar";
+import Landing from "@/app/components/admin/landing";
+import InterestGroups from "@/app/components/admin/intrest";
+import Request from "@/app/components/admin/request";
+import Sidebar from "@/app/components/admin/sidebar";
 
 export default function AdminDashboard() {
   const router = useRouter();

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navbar } from '../compoents/navbar'
-import { HomePage } from '../compoents/port/list'
+import { Navbar } from '../components/navbar'
+import { HomePage } from '../components/port/list'
 
 export default function page() {
   return (

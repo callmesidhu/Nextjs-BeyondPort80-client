@@ -1,5 +1,6 @@
 import {Tiny5,Antonio,Vina_Sans,Unbounded,Poppins,Urbanist,Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CustomCursor } from './components/CustomCursor';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,7 +57,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${tiny5.variable} ${vinaSans.variable} ${urbanist.variable} ${geistSans.variable} ${geistMono.variable} ${unbounded.variable} ${poppins.variable} antialiased`}
       >
+        <CustomCursor>
         {children}
+        </CustomCursor>
       </body>
     </html>
   );

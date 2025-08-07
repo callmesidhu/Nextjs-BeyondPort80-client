@@ -1,6 +1,6 @@
 import React from 'react'
-import { EventsGrid } from '../compoents/discover/events'
-import { Navbar } from '../compoents/navbar'
+import { EventsGrid } from '../components/discover/events'
+import { Navbar } from '../components/navbar'
 
 function page() {
   return (

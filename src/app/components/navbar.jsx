@@ -1,11 +1,12 @@
 'use client'; // Only if you're using Next.js App Router
 
 import Link from "next/link";
-import  { useState } from "react";
+import  { useState, useRef, useEffect } from "react";
+import { useCursor } from './CustomCursor';
 
 export function Navbar() {
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const {handleMouseEnter, handleMouseLeave} = useCursor();
 
   return (
     <nav className="w-full px-8  lg:px-[120px] py-6">
@@ -24,18 +25,21 @@ export function Navbar() {
           <Link
             href="/about"
             className="font-urbanist text-base font-medium text-black hover:text-gray-600 transition-colors"
+            onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
           >
             About
           </Link>
           <Link
             href="/partners"
             className="font-urbanist text-base font-medium text-black hover:text-gray-600 transition-colors"
+            onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
           >
             Partners
           </Link>
           <Link
             href="/speakers"
             className="font-urbanist text-base font-medium text-black hover:text-gray-600 transition-colors"
+            onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
           >
             Speakers
           </Link>
@@ -43,7 +47,7 @@ export function Navbar() {
 
         {/* CTA Button */}
         <div className="hidden md:block flex-shrink-0">
-          <button className="bg-brand-orange px-4 py-4 text-white font-urbanist text-base font-medium hover:bg-orange-700 bg-orange-600 transition-colors">
+          <button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="bg-brand-orange px-4 py-4 text-white font-urbanist text-base font-medium hover:bg-orange-700 bg-orange-600 transition-colors">
             Request New :80
           </button>
         </div>
@@ -103,12 +107,14 @@ export function Navbar() {
             Partners
           </Link>
           <Link
+          
             href="/speakers"
             className="block font-urbanist text-base font-medium text-black hover:text-gray-600"
           >
             Speakers
           </Link>
-          <button className=" bg-orange-600 px-8 py-3 text-white font-urbanist text-base font-medium hover:bg-orange-700 transition-colors ">
+          <button 
+          className=" bg-orange-600 px-8 py-3 text-white font-urbanist text-base font-medium hover:bg-orange-700 transition-colors ">
             Request New :80
           </button>
         </div>

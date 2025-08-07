@@ -1,15 +1,15 @@
 import React from 'react'
-import Banner from './compoents/banner'
-import { Hero } from './compoents/hero'
-import { Navbar } from './compoents/navbar'
+import Banner from './components/banner'
+import { Hero } from './components/hero'
+import { Navbar } from './components/navbar'
 
 function page() {
   return (
-    <div className='md:max-h-screen  '>
+    <>
       <Navbar />
       <Banner />
       <Hero />
-    </div>
+    </>
   )
 }
 

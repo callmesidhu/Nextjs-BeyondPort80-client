@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navbar } from '../compoents/navbar'
-import Form from '../compoents/request/form'
+import { Navbar } from '../components/navbar'
+import Form from '../components/request/form'
 
 export default function page() {
   return (

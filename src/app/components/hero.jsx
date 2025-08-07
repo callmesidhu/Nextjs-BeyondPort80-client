@@ -1,6 +1,11 @@
+'use client';
+
 import Link from "next/link";
+import { useCursor } from "./CustomCursor";
 
 export function Hero() {
+  const { handleMouseEnter, handleMouseLeave } = useCursor();
+
   return (
     <div className="px-6 lg:px-[120px] py-16 lg:py-16">
       <div className="max-w-screen-xl mx-auto">
@@ -20,6 +25,7 @@ export function Hero() {
             <Link
               href="/discover"
               className="font-urbanist text-lg lg:text-xl font-semibold text-black underline decoration-2 underline-offset-4 hover:text-gray-600 transition-colors self-start"
+              onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
             >
               Discover All :80s
             </Link>

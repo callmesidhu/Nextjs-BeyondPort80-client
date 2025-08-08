@@ -66,7 +66,7 @@ export default function InfiniteScrollBanner() {
 
   return (
     <>
-      <section className="w-full bg-white py-10">
+      <section className="w-full bg-white py-5">
         <div ref={scrollRef} className="flex overflow-x-scroll gap-8 px-6 scrollbar-hide">
           {duplicatedImages.map((img, index) => (
             <div key={index} className="group flex-shrink-0 w-[434px]" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>

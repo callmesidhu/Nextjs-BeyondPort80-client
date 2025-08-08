@@ -7,7 +7,7 @@ export function Hero() {
   const { handleMouseEnter, handleMouseLeave } = useCursor();
 
   return (
-    <div className="px-6 lg:px-[120px] py-16 lg:py-16">
+    <div className="px-6 lg:px-[120px]">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-16">
           {/* Hero Content */}

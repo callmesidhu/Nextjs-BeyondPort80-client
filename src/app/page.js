@@ -5,11 +5,11 @@ import { Navbar } from './components/navbar'
 
 function page() {
   return (
-    <>
+    <div className='max-h-screen overflow-y-hidden'>
       <Navbar />
       <Banner />
       <Hero />
-    </>
+    </div>
   )
 }
 

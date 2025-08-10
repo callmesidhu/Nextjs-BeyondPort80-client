@@ -3,18 +3,21 @@
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCursor } from '../CustomCursor';
+import { useRouter } from 'next/navigation';
 
 const locationTags = ["Trivandrum", "Kochi", "Kozhikode", "Bangalore", "Hyderabad"];
-const events = [
-  { id: 1, title: "UX:80", location: "Trivandrum,Kerala", fontFamily: "font-vina-sans", fontSize: "text-4xl sm:text-5xl lg:text-7xl xl:text-8xl", style: "tracking-wide", tags: ["Design Thinking", "User Flow", "UI Kits"] },
-  { id: 2, title: "AI:80", location: "Trivandrum,Kerala", fontFamily: "font-unbounded", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold", tags: ["ML", "LLMs", "AI Ethics"] },
-  { id: 3, title: "BLOCK\nCHAIN", location: "Kottayam,Kerala", fontFamily: "font-satoshi", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-black tracking-wide", tags: ["Web3", "Smart Contracts", "DAOs"] },
-  { id: 4, title: "CYBER\nSECURITY", location: "Trivandrum,Kerala", fontFamily: "font-advio", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["Pen Testing", "Zero Trust", "Firewalls"] },
-  { id: 5, title: "Data Science.", location: "Trivandrum,Kerala", fontFamily: "font-poppins", fontSize: "text-2xl sm:text-3xl lg:text-3xl xl:text-4xl", style: "font-semibold leading-tight tracking-wide", tags: ["Python", "Pandas", "Data Viz"] },
-  { id: 6, title: "VR:80", location: "Kozhikode ,Kerala", fontFamily: "font-epilogue", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold italic tracking-wide", tags: ["Immersion", "Metaverse", "Unity"] },
-  { id: 7, title: "Game:80", location: "Trivandrum,Kerala", fontFamily: "font-tiny5", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["8-bit", "Indie Games", "Pixel Art"] },
-  { id: 8, title: "IoT:80", location: "Kochi, Kerala", fontFamily: "font-antonio", fontSize: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl", style: "tracking-widest", tags: ["Arduino", "Sensors", "Edge AI"] }
+
+const ports = [ 
+  { id: 1, uuid: "a9726f69-7ae1-469e-bcda-281a7ccc9318", title: "UX:80", location: "Trivandrum,Kerala", fontFamily: "font-vina-sans", fontSize: "text-4xl sm:text-5xl lg:text-7xl xl:text-8xl", style: "tracking-wide", tags: ["Design Thinking", "User Flow", "UI Kits"] },
+  { id: 2, uuid: "your-uuid-for-ai-here", title: "AI:80", location: "Trivandrum,Kerala", fontFamily: "font-unbounded", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold", tags: ["ML", "LLMs", "AI Ethics"] },
+  { id: 3, uuid: "your-uuid-for-blockchain-here", title: "BLOCK\nCHAIN", location: "Kottayam,Kerala", fontFamily: "font-satoshi", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-black tracking-wide", tags: ["Web3", "Smart Contracts", "DAOs"] },
+  { id: 4, uuid: "your-uuid-for-cyber-here", title: "CYBER\nSECURITY", location: "Trivandrum,Kerala", fontFamily: "font-advio", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["Pen Testing", "Zero Trust", "Firewalls"] },
+  { id: 5, uuid: "your-uuid-for-data-science-here", title: "Data Science.", location: "Trivandrum,Kerala", fontFamily: "font-poppins", fontSize: "text-2xl sm:text-3xl lg:text-3xl xl:text-4xl", style: "font-semibold leading-tight tracking-wide", tags: ["Python", "Pandas", "Data Viz"] },
+  { id: 6, uuid: "your-uuid-for-vr-here", title: "VR:80", location: "Kozhikode ,Kerala", fontFamily: "font-epilogue", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold italic tracking-wide", tags: ["Immersion", "Metaverse", "Unity"] },
+  { id: 7, uuid: "your-uuid-for-game-here", title: "Game:80", location: "Trivandrum,Kerala", fontFamily: "font-tiny5", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["8-bit", "Indie Games", "Pixel Art"] },
+  { id: 8, uuid: "your-uuid-for-iot-here", title: "IoT:80", location: "Kochi, Kerala", fontFamily: "font-antonio", fontSize: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl", style: "tracking-widest", tags: ["Arduino", "Sensors", "Edge AI"] }
 ];
+
 const tagVariants = {
   initial: { opacity: 0, y: 10 },
   hover: { opacity: 1, y: 0, transition: { duration: 0.3 } }
@@ -22,6 +25,11 @@ const tagVariants = {
 
 export function EventsGrid() {
   const { handleMouseEnter, handleMouseLeave } = useCursor();
+  const router = useRouter(); 
+
+  const handlePortClick = (uuid) => {
+    router.push(`/discover/${uuid}`);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -51,20 +59,19 @@ export function EventsGrid() {
           </div>
         </div>
 
-        {/* Events Grid */}
+        {/* Grid Section */}
         <div className="relative">
-          {/* These four divs create the outer border and are lifted up with z-10 */}
           <div className="absolute top-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] z-10"></div>
           <div className="absolute bottom-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.8)_0px,rgba(0,0,0,0.8)_10px,transparent_10px,transparent_20px)] z-10"></div>
           <div className="absolute top-0 left-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] z-10"></div>
           <div className="absolute top-0 right-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] z-10"></div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            {events.map((event, index) => {
+            {ports.map((event, index) => { 
               const isLastInRowSm = (index + 1) % 2 === 0;
               const isLastInRowLg = (index + 1) % 4 === 0;
-              const isLastRowSm = index >= events.length - 2;
-              const isLastRowLg = index >= events.length - 4;
+              const isLastRowSm = index >= ports.length - 2;
+              const isLastRowLg = index >= ports.length - 4;
 
               return (
                 <motion.div
@@ -73,18 +80,24 @@ export function EventsGrid() {
                   whileHover="hover"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
+                  onClick={() => handlePortClick(event.uuid)} 
                   className="relative h-72 lg:h-80 p-6 sm:p-8 lg:p-12 flex flex-col justify-center items-center text-center bg-white hover:bg-gray-50 transition-colors cursor-pointer"
                 >
-                  {/* Inner grid line logic is unchanged */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastRowLg ? 'lg:hidden' : 'lg:block'} ${isLastRowSm ? 'sm:hidden lg:hidden' : 'sm:block'} ${index === events.length - 1 ? 'hidden sm:hidden' : 'block sm:hidden'}`}></div>
+                  <div className={`absolute bottom-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastRowLg ? 'lg:hidden' : 'lg:block'} ${isLastRowSm ? 'sm:hidden' : ''} ${index === ports.length - 1 ? 'hidden' : 'block sm:block'}`}></div>
                   <div className={`absolute top-0 right-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastInRowLg ? 'lg:hidden' : ''} ${isLastInRowSm ? 'sm:hidden lg:block' : ''}`}></div>
                   
-                  {/* Content */}
                   <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="flex flex-col items-center gap-4">
                     <h3 className={`whitespace-pre-line text-black text-center leading-none ${event.fontFamily} ${event.fontSize} ${event.style}`}>{event.title}</h3>
                     <p className="text-black text-center font-urbanist text-base sm:text-lg lg:text-xl font-normal tracking-wide">{event.location}</p>
                   </motion.div>
-                  {event.tags && <motion.div variants={tagVariants} className="absolute bottom-6 left-6 right-6 flex flex-wrap justify-center gap-2">{event.tags.map((tag, i) => <span key={i} className="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 border border-green-400 rounded">{tag}</span>)}</motion.div>}
+                  
+                  {event.tags && (
+                    <motion.div variants={tagVariants} className="absolute bottom-6 left-6 right-6 flex flex-wrap justify-center gap-2">
+                      {event.tags.map((tag, i) => (
+                        <span key={i} className="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 border border-green-400 rounded">{tag}</span>
+                      ))}
+                    </motion.div>
+                  )}
                 </motion.div>
               );
             })}

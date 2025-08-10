@@ -5,8 +5,7 @@ import Form from '../components/request/form'
 export default function page() {
   return (
     <div>
-
-      <Form />
+      <Form/>
       </div>
   )
 }

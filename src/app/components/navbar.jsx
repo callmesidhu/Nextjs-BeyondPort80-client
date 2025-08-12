@@ -26,7 +26,7 @@ export function Navbar() {
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-12">
           <Link
-            href="/about"
+            href="/"
             className="font-urbanist text-base font-medium text-black hover:text-gray-600 transition-colors"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -34,7 +34,7 @@ export function Navbar() {
             About
           </Link>
           <Link
-            href="/partners"
+            href="/"
             className="font-urbanist text-base font-medium text-black hover:text-gray-600 transition-colors"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -42,7 +42,7 @@ export function Navbar() {
             Partners
           </Link>
           <Link
-            href="/speakers"
+            href="/"
             className="font-urbanist text-base font-medium text-black hover:text-gray-600 transition-colors"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -85,13 +85,13 @@ export function Navbar() {
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden flex flex-col items-center mt-4 p-4 space-y-4 rounded-xl shadow-xl bg-white absolute top-14 left-7 z-50 h-[28%] w-[310px]">
-          <Link href="/about" className="block font-urbanist text-base font-medium text-black hover:text-gray-600">
+          <Link href="/" className="block font-urbanist text-base font-medium text-black hover:text-gray-600">
             About
           </Link>
-          <Link href="/partners" className="block font-urbanist text-base font-medium text-black hover:text-gray-600">
+          <Link href="/" className="block font-urbanist text-base font-medium text-black hover:text-gray-600">
             Partners
           </Link>
-          <Link href="/speakers" className="block font-urbanist text-base font-medium text-black hover:text-gray-600">
+          <Link href="/" className="block font-urbanist text-base font-medium text-black hover:text-gray-600">
             Speakers
           </Link>
           <button

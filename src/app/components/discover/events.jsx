@@ -1,19 +1,20 @@
 "use client";
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
-import { useCursor } from '../CustomCursor';
+import { useCursor } from "../CustomCursor";
 import { useRouter } from "next/navigation";
 
 const locationTags = ["Trivandrum", "Kochi", "Kozhikode", "Bangalore", "Hyderabad"];
+
 const events = [
-  { id: 1, title: "UX:80", location: "Trivandrum,Kerala", fontFamily: "font-vina-sans", fontSize: "text-4xl sm:text-5xl lg:text-7xl xl:text-8xl", style: "tracking-wide", tags: ["Design Thinking", "User Flow", "UI Kits"], slug: "ux" },
-  { id: 2, title: "AI:80", location: "Trivandrum,Kerala", fontFamily: "font-unbounded", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold", tags: ["ML", "LLMs", "AI Ethics"], slug: "ai" },
-  { id: 3, title: "BLOCK\nCHAIN", location: "Kottayam,Kerala", fontFamily: "font-satoshi", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-black tracking-wide", tags: ["Web3", "Smart Contracts", "DAOs"], slug: "blockchain" },
-  { id: 4, title: "CYBER\nSECURITY", location: "Trivandrum,Kerala", fontFamily: "font-advio", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["Pen Testing", "Zero Trust", "Firewalls"], slug: "cybersecurity" },
-  { id: 5, title: "Data Science.", location: "Trivandrum,Kerala", fontFamily: "font-poppins", fontSize: "text-2xl sm:text-3xl lg:text-3xl xl:text-4xl", style: "font-semibold leading-tight tracking-wide", tags: ["Python", "Pandas", "Data Viz"], slug: "datascience" },
-  { id: 6, title: "VR:80", location: "Kozhikode ,Kerala", fontFamily: "font-epilogue", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold italic tracking-wide", tags: ["Immersion", "Metaverse", "Unity"], slug: "vr" },
-  { id: 7, title: "Game:80", location: "Trivandrum,Kerala", fontFamily: "font-tiny5", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["8-bit", "Indie Games", "Pixel Art"], slug: "game" },
-  { id: 8, title: "IoT:80", location: "Kochi, Kerala", fontFamily: "font-antonio", fontSize: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl", style: "tracking-widest", tags: ["Arduino", "Sensors", "Edge AI"], slug: "iot" }
+  { id: 1, title: "UX:80", location: "Trivandrum,Kerala", fontFamily: "font-vina-sans", fontSize: "text-4xl sm:text-5xl lg:text-7xl xl:text-8xl", style: "tracking-wide", tags: ["Design Thinking", "User Flow", "UI Kits"], slug: "ux", active: true },
+  { id: 2, title: "AI:80", location: "Trivandrum,Kerala", fontFamily: "font-unbounded", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold", tags: ["ML", "LLMs", "AI Ethics"], slug: "ai", active: false },
+  { id: 3, title: "BLOCK\nCHAIN", location: "Kottayam,Kerala", fontFamily: "font-satoshi", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-black tracking-wide", tags: ["Web3", "Smart Contracts", "DAOs"], slug: "blockchain", active: false },
+  { id: 4, title: "CYBER\nSECURITY", location: "Trivandrum,Kerala", fontFamily: "font-advio", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["Pen Testing", "Zero Trust", "Firewalls"], slug: "cybersecurity", active: false },
+  { id: 5, title: "Data Science.", location: "Trivandrum,Kerala", fontFamily: "font-poppins", fontSize: "text-2xl sm:text-3xl lg:text-3xl xl:text-4xl", style: "font-semibold leading-tight tracking-wide", tags: ["Python", "Pandas", "Data Viz"], slug: "datascience", active: false },
+  { id: 6, title: "VR:80", location: "Kozhikode ,Kerala", fontFamily: "font-epilogue", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold italic tracking-wide", tags: ["Immersion", "Metaverse", "Unity"], slug: "vr", active: false },
+  { id: 7, title: "Game:80", location: "Trivandrum,Kerala", fontFamily: "font-tiny5", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["8-bit", "Indie Games", "Pixel Art"], slug: "game", active: false },
+  { id: 8, title: "IoT:80", location: "Kochi, Kerala", fontFamily: "font-antonio", fontSize: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl", style: "tracking-widest", tags: ["Arduino", "Sensors", "Edge AI"], slug: "iot", active: false }
 ];
 
 const tagVariants = {
@@ -25,8 +26,10 @@ export function EventsGrid() {
   const { handleMouseEnter, handleMouseLeave } = useCursor();
   const router = useRouter();
 
-  const handleCardClick = (slug) => {
-    router.push(`/discover/${slug}`);
+  const handleCardClick = (slug, active) => {
+    if (active) {
+      router.push(`/discover/${slug}`);
+    }
   };
 
   return (
@@ -81,15 +84,29 @@ export function EventsGrid() {
                 <motion.div
                   key={event.id}
                   initial="initial"
-                  whileHover="hover"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleCardClick(event.slug)}
-                  className="relative h-72 lg:h-80 p-6 sm:p-8 lg:p-12 flex flex-col justify-center items-center text-center bg-white hover:bg-gray-50 transition-colors cursor-pointer"
+                  whileHover={event.active ? "hover" : ""}
+                  onMouseEnter={event.active ? handleMouseEnter : undefined}
+                  onMouseLeave={event.active ? handleMouseLeave : undefined}
+                  onClick={() => handleCardClick(event.slug, event.active)}
+                  className={`relative h-72 lg:h-80 p-6 sm:p-8 lg:p-12 flex flex-col justify-center items-center text-center transition-colors ${
+                    event.active
+                      ? "bg-white hover:bg-gray-50 cursor-pointer"
+                      : "bg-gray-200 opacity-60 cursor-not-allowed"
+                  }`}
                 >
                   {/* Inner borders */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastRowLg ? 'lg:hidden' : 'lg:block'} ${isLastRowSm ? 'sm:hidden lg:hidden' : 'sm:block'} ${index === events.length - 1 ? 'hidden sm:hidden' : 'block sm:hidden'}`}></div>
-                  <div className={`absolute  top-0 right-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastInRowLg ? 'lg:hidden' : ''} ${isLastInRowSm ? 'sm:hidden lg:block' : ''}`}></div>
+                  <div
+                    className={`absolute bottom-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${
+                      isLastRowLg ? "lg:hidden" : "lg:block"
+                    } ${isLastRowSm ? "sm:hidden lg:hidden" : "sm:block"} ${
+                      index === events.length - 1 ? "hidden sm:hidden" : "block sm:hidden"
+                    }`}
+                  ></div>
+                  <div
+                    className={`absolute  top-0 right-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${
+                      isLastInRowLg ? "lg:hidden" : ""
+                    } ${isLastInRowSm ? "sm:hidden lg:block" : ""}`}
+                  ></div>
 
                   {/* Content */}
                   <motion.div
@@ -99,7 +116,9 @@ export function EventsGrid() {
                     viewport={{ once: true }}
                     className="flex flex-col items-center gap-4"
                   >
-                    <h3 className={`whitespace-pre-line text-black text-center leading-none ${event.fontFamily} ${event.fontSize} ${event.style}`}>
+                    <h3
+                      className={`whitespace-pre-line text-black text-center leading-none ${event.fontFamily} ${event.fontSize} ${event.style}`}
+                    >
                       {event.title}
                     </h3>
                     <p className="text-black text-center font-urbanist text-base sm:text-lg lg:text-xl font-normal tracking-wide">
@@ -108,9 +127,15 @@ export function EventsGrid() {
                   </motion.div>
 
                   {event.tags && (
-                    <motion.div variants={tagVariants} className="absolute bottom-6 left-6 right-6 flex flex-wrap justify-center gap-2">
+                    <motion.div
+                      variants={tagVariants}
+                      className="absolute bottom-6 left-6 right-6 flex flex-wrap justify-center gap-2"
+                    >
                       {event.tags.map((tag, i) => (
-                        <span key={i} className="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 border border-green-400 rounded">
+                        <span
+                          key={i}
+                          className="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 border border-green-400 rounded"
+                        >
                           {tag}
                         </span>
                       ))}

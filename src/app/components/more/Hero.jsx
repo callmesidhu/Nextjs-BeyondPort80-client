@@ -18,7 +18,7 @@ export default function HeroSection() {
         <div className="mb-6">
           <div className="relative mb-4">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/ae7775ab8fecde7675989a643444d995851e1caa?width=1168"
+              src="/UX.png"
               alt="UX:80 Sunday Service Celebration"
               className="w-full max-w-[584px] h-auto aspect-[584/316] object-cover shadow-[0_4px_9.2px_1px_rgba(0,0,0,0.10)] "
             />

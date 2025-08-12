@@ -7,12 +7,12 @@ export default function EventDetails() {
           <div className="space-y-6">
             {/* Title */}
             <h2 className="text-2xl lg:text-4xl font-bold font-urbanist text-black leading-normal">
-              Crafting Inclusive UX: Mastering Accessible Design
-            </h2>
+The Invincible Layer of UX: Designing for the Mind, Not the Screen            </h2>
 
             {/* Description */}
             <p className="text-base font-urbanist text-black leading-7 tracking-[0.32px]">
-              Join us for an engaging UX:80 session demystifying accessible interface design. Learn practical techniques for implementing WCAG guidelines, ensuring screen reader compatibility, and creating inclusive digital experiences for all users.
+Join us for an engaging UX:80 session demystifying accessible interface design. Learn practical techniques for implementing WCAG guidelines, ensuring screen reader compatibility, and creating inclusive digital experiences for all users.
+
             </p>
 
             {/* Event Details */}
@@ -44,7 +44,7 @@ export default function EventDetails() {
                     <path d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z" stroke="black" strokeOpacity="0.72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   <span className="text-base font-urbanist text-black/72 font-medium">
-                    7th Aug 2025
+                    13th Aug 2025
                   </span>
                 </div>
               </div>
@@ -57,9 +57,9 @@ export default function EventDetails() {
           {/* Speaker Image */}
           <div className="w-full lg:w-[248px]">
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/12710360c7fa9223b42a9592d69dd964cb22f449?width=496"
-              alt="Laura Klein"
-              className="w-full h-[362px] object-cover"
+              src="/UXimg.png"
+              alt="Krishnan Ramachandran"
+              className="w-full h-full object-cover"
             />
           </div>
 
@@ -67,14 +67,11 @@ export default function EventDetails() {
           <div className="flex-1 p-4 lg:p-6">
             <div className="space-y-2 max-w-[350px]">
               <h3 className="text-2xl lg:text-4xl font-semibold font-urbanist text-black">
-                Laura Klein
-              </h3>
+Krishnan Ramachandran              </h3>
               <p className="text-base font-urbanist text-black font-medium">
-                Founder, HmntyCntrd
-              </p>
+Manager-UX, Reflection Infosystems              </p>
               <p className="text-base font-urbanist text-black/72 leading-7 tracking-[0.32px]">
-                Vivianne Castillo is a renowned UX leader and founder of HmntyCntrd, a consultancy focused on human-centered design and ethical UX practices. With over a decade of experience, she's worked with global brands to create inclusive digital experiences and actively shares insights on accessibility and empathy in design via her talks and X posts (@vcastillo, ~15k followers).
-              </p>
+Krishnan Ramachandran, Manager – UX at Reflections Infosystems, has 27+ years of experience delivering user-centered, business-aligned digital products. He leads end-to-end UX—from discovery and analysis to wireframing, prototyping, and branding—turning complex ideas into clear, interactive solutions. Known for a client-first approach, he builds strong partnerships and drives accessible, high-impact outcomes.              </p>
             </div>
           </div>
         </div>

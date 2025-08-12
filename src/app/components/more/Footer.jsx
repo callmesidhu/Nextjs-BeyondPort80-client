@@ -20,8 +20,7 @@ export default function Footer() {
         </div>
 
         {/* Social Media Links */}
-        <div className="flex items-center gap-4 opacity-60">
-          {/* YouTube */}
+        {/* <div className="flex items-center gap-4 opacity-60">
           <a 
             href="https://youtube.com" 
             target="_blank" 
@@ -35,7 +34,6 @@ export default function Footer() {
             />
           </a>
 
-          {/* LinkedIn */}
           <a 
             href="https://linkedin.com" 
             target="_blank" 
@@ -49,7 +47,6 @@ export default function Footer() {
             />
           </a>
 
-          {/* Instagram */}
           <a 
             href="https://instagram.com" 
             target="_blank" 
@@ -62,7 +59,7 @@ export default function Footer() {
               className="w-10 h-10"
             />
           </a>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

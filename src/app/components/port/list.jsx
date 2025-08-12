@@ -1,8 +1,10 @@
+import Link from "next/link";
 import { Clock, Calendar, MapPin, User } from "lucide-react";
 
 const events = [
   {
     id: 1,
+    uuid:"a9726f69-7ae1-469e-bcda-281a7ccc9318",
     title: "Designing Accessible Interfaces",
     image: "/UX.png",
     time: "05:00 PM",
@@ -21,11 +23,11 @@ function EventCard({ event, position }) {
   };
 
   return (
-    <div className={`flex flex-col m-5 ${borderClasses[position]}`}>
+    <Link href={`/discover/ux/${event.uuid}`} className={`flex flex-col m-5 ${borderClasses[position]} cursor-pointer hover:shadow-lg transition-shadow`}>
       <img
         src={event.image}
         alt={event.title}
-        className="w-full h-[185px] object-cover "
+        className="w-full h-[185px] object-cover"
       />
       <div className="flex flex-col gap-6 px-2 py-6">
         <h3 className="font-urbanist text-xl font-bold text-black leading-normal">
@@ -64,7 +66,7 @@ function EventCard({ event, position }) {
           {event.buttonType === "book" ? "Book Tickets Now" : "View Event Video"}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
 

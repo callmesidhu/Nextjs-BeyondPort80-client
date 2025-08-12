@@ -1,14 +1,16 @@
-import React from 'react'
-import { EventsGrid } from '../components/discover/events'
-import { Navbar } from '../components/navbar'
+"use client";
+import React, { useEffect, useRef } from "react";
+import { EventsGrid } from "../components/discover/events";
+import { Navbar } from "../components/navbar";
 
-function page() {
+function Page() {
+
   return (
     <div>
       <Navbar />
       <EventsGrid />
     </div>
-  )
+  );
 }
 
-export default page
+export default Page;

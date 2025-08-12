@@ -1,5 +1,4 @@
 "use client";
-
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCursor } from '../CustomCursor';
@@ -93,15 +92,27 @@ export function EventsGrid() {
                   <div className={`absolute  top-0 right-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastInRowLg ? 'lg:hidden' : ''} ${isLastInRowSm ? 'sm:hidden lg:block' : ''}`}></div>
 
                   {/* Content */}
-                  <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="flex flex-col items-center gap-4">
-                    <h3 className={`whitespace-pre-line text-black text-center leading-none ${event.fontFamily} ${event.fontSize} ${event.style}`}>{event.title}</h3>
-                    <p className="text-black text-center font-urbanist text-base sm:text-lg lg:text-xl font-normal tracking-wide">{event.location}</p>
+                  <motion.div
+                    initial={{ scale: 0.95, opacity: 1 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.4 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col items-center gap-4"
+                  >
+                    <h3 className={`whitespace-pre-line text-black text-center leading-none ${event.fontFamily} ${event.fontSize} ${event.style}`}>
+                      {event.title}
+                    </h3>
+                    <p className="text-black text-center font-urbanist text-base sm:text-lg lg:text-xl font-normal tracking-wide">
+                      {event.location}
+                    </p>
                   </motion.div>
 
                   {event.tags && (
                     <motion.div variants={tagVariants} className="absolute bottom-6 left-6 right-6 flex flex-wrap justify-center gap-2">
                       {event.tags.map((tag, i) => (
-                        <span key={i} className="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 border border-green-400 rounded">{tag}</span>
+                        <span key={i} className="px-2 py-1 text-xs font-medium text-green-700 bg-green-100 border border-green-400 rounded">
+                          {tag}
+                        </span>
                       ))}
                     </motion.div>
                   )}

@@ -55,7 +55,7 @@ Join us for an engaging UX:80 session demystifying accessible interface design. 
         {/* Speaker Profile Section */}
         <div className="flex flex-col lg:flex-row border-t-dashed border-t-[0.5px] border-black/60 lg:border-t-0">
           {/* Speaker Image */}
-          <div className="w-full lg:w-[248px]">
+          <div className="w-52 lg:w-[248px]">
             <img
               src="/UXimg.png"
               alt="Krishnan Ramachandran"

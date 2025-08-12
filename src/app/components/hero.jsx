@@ -33,13 +33,16 @@ export function Hero() {
 
           {/* Watch Reel Component */}
           <div className="flex flex-col items-center gap-2 lg:max-w-[253px] lg:ml-auto">
-            <div className="w-full max-w-[320px]">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/9194fe9ed9bdc24865bb8112ef37f1d4d539961d?width=506"
-                alt="Watch Reel"
-                className="w-full h-auto aspect-[253/174] object-cover"
-              />
-            </div>
+<div className="w-full max-w-[400px]">
+  <iframe
+    src="https://www.youtube.com/embed/yZg21bnatrE?autoplay=1&loop=1&mute=1&playlist=yZg21bnatrE&controls=0&modestbranding=1&showinfo=0&rel=0&fs=0"
+    title="Watch Reel"
+    className="w-full h-full"
+    frameBorder="0"
+    allow="autoplay; fullscreen"
+  ></iframe>
+</div>
+
             <span className="font-urbanist text-md font-semibold text-black text-center">
               (Watch Reel)
             </span>

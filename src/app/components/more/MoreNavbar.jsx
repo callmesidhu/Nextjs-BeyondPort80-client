@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
 import { useRouter } from "next/navigation";
 import { useCursor } from "../CustomCursor";
 
@@ -54,13 +53,15 @@ export function MoreNavbar() {
 
         {/* Desktop CTA Button */}
         <div className="hidden md:block flex-shrink-0">
-          <button
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="bg-[#87C041] hover:bg-[#87C041]/90 px-8 py-4 text-white font-urbanist text-base font-medium transition-colors"
-          >
-            Book Ticket
-          </button>
+          <Link href="https://makemypass.com/event/uxport80">
+            <button
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className="bg-[#87C041] hover:bg-[#87C041]/90 px-8 py-4 text-white font-urbanist text-base font-medium transition-colors"
+            >
+              Book Ticket
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -94,13 +95,15 @@ export function MoreNavbar() {
           <Link href="/speakers" className="block font-urbanist text-base font-medium text-black hover:text-gray-600">
             Speakers
           </Link>
-          <button
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="bg-[#87C041] hover:bg-[#87C041]/90 px-4 py-4 text-white font-urbanist text-base font-medium transition-colors"
-          >
-            Book Ticket
-          </button>
+          <Link href="https://makemypass.com/event/uxport80">
+            <button
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className="bg-[#87C041] hover:bg-[#87C041]/90 px-4 py-4 text-white font-urbanist text-base font-medium transition-colors"
+            >
+              Book Ticket
+            </button>
+          </Link>
         </div>
       )}
     </nav>

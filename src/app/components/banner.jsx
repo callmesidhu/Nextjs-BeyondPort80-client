@@ -92,7 +92,7 @@ export default function InfiniteScrollBanner() {
   }, [isIntersecting]);
 
   return (
-    <section className="w-full bg-white py-5">
+    <section className="w-full bg-white py-0 md:py-5">
       <div
         ref={scrollRef}
         className="flex overflow-x-scroll gap-8 px-6 scrollbar-hide"
@@ -104,7 +104,7 @@ export default function InfiniteScrollBanner() {
     onMouseEnter={handleMouseEnter}
     onMouseLeave={handleMouseLeave}
   >
-    <div className="w-full h-[282px] rounded-md overflow-hidden">
+    <div className="md:w-full md:h-[282px] h-[150px] w-auto rounded-md overflow-hidden">
       <img
         src={img.image_url}
         alt={img.title || `Banner ${index}`}

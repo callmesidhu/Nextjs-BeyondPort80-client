@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <div className="px-6 lg:px-[120px]">
       <div className="max-w-screen-xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-16">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 md:gap-8 lg:gap-16">
           {/* Hero Content */}
           <div className="flex flex-col gap-6 lg:max-w-[455px]">
             <div className="flex flex-col gap-2">

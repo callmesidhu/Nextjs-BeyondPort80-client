@@ -119,7 +119,7 @@ export function HomePage() {
               <div className="flex items-center gap-2">
                 <Calendar className="w-6 h-6 text-black/70" />
                 <span className="font-urbanist text-base text-black/70">
-                  Every First Thursday
+                  Every First Wednesday 
                 </span>
               </div>
 

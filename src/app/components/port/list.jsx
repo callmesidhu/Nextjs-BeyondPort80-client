@@ -52,7 +52,7 @@ function EventCard({ event, position }) {
         <img
           src={event.banner || event.logo || "/UX.png"}
           alt={event.title}
-          className="w-full h-[185px] object-cover"
+          className="w-full h-[185px]"
         />
       </Link>
 
@@ -79,7 +79,7 @@ function EventCard({ event, position }) {
           <div className="flex items-center gap-2">
             <MapPin className="w-6 h-6 text-black/70" strokeWidth={2} />
             <span className="font-urbanist text-base text-black/70">
-              {event.place || "ICFOSS, Greenfield Stadium, Trivandrum"}
+              {"ICFOSS, Greenfield Stadium, Trivandrum"}
             </span>
           </div>
 

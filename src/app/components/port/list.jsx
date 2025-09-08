@@ -1,20 +1,8 @@
+"use client";
 import Link from "next/link";
 import { Clock, Calendar, MapPin, User } from "lucide-react";
-
-const events = [
-  {
-    id: 1,
-    uuid: "a9726f69-7ae1-469e-bcda-281a7ccc9318",
-    title: "Designing Accessible Interfaces",
-    image: "/UX.png",
-    time: "05:00 PM",
-    date: "13th Aug 2025",
-    location: "ICFOSS, Greenfield Stadium, Trivandrum",
-    speaker: "Krishnan Ramachandran",
-    buttonType: "book",
-    bookingLink: "https://makemypass.com/event/uxport80"
-  }
-];
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function EventCard({ event, position }) {
   const borderClasses = {
@@ -25,14 +13,44 @@ function EventCard({ event, position }) {
       "border-t-[0.5px] border-r-[0.5px] border-b-[0.5px] border-dashed border-black/60"
   };
 
+  // Format date function
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleDateString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+    
+    const getOrdinalSuffix = (day) => {
+      if (day > 3 && day < 21) return 'th';
+      switch (day % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+    
+    return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
+  };
+
+  // Format time function
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: true 
+    });
+  };
+
   return (
     <div
       className={`flex flex-col m-5 ${borderClasses[position]} hover:shadow-lg transition-shadow`}
     >
       {/* Card Click Area */}
-      <Link href={`/discover/ux/${event.uuid}`} className="cursor-pointer">
+      <Link href={`/discover/ux/${event.id}`} className="cursor-pointer">
         <img
-          src={event.image}
+          src={event.banner || event.logo || "/UX.png"}
           alt={event.title}
           className="w-full h-[185px] object-cover"
         />
@@ -47,46 +65,42 @@ function EventCard({ event, position }) {
           <div className="flex items-center gap-2">
             <Clock className="w-6 h-6 text-black/70" strokeWidth={2} />
             <span className="font-urbanist text-base text-black/70">
-              {event.time}
+              {formatTime(event.event_start_date)}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <Calendar className="w-6 h-6 text-black/70" strokeWidth={2} />
             <span className="font-urbanist text-base text-black/70">
-              {event.date}
+              {formatDate(event.event_start_date)}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <MapPin className="w-6 h-6 text-black/70" strokeWidth={2} />
             <span className="font-urbanist text-base text-black/70">
-              {event.location}
+              {event.place || "ICFOSS, Greenfield Stadium, Trivandrum"}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <User className="w-6 h-6 text-black" strokeWidth={2} />
             <span className="font-urbanist text-base text-black/70">
-              {event.speaker}
+              {event.speakers && event.speakers.length > 0 
+                ? event.speakers[0].name 
+                : "TBA"}
             </span>
           </div>
         </div>
 
-        {/* Button now goes directly to booking link */}
+        {/* Book Tickets Button */}
         <a
-          href={event.bookingLink}
+          href={`https://makemypass.com/event/${event.name}`}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal transition-colors ${
-            event.buttonType === "book"
-              ? "bg-[#87C041] hover:bg-[#87C041]/90 text-white"
-              : "border-[0.5px] border-solid border-black/70 hover:bg-gray-50 text-[#87C041]"
-          }`}
+          className="flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal transition-colors bg-[#87C041] hover:bg-[#87C041]/90 text-white"
         >
-          {event.buttonType === "book"
-            ? "Book Tickets Now"
-            : "View Event Video"}
+          Book Tickets Now
         </a>
       </div>
     </div>
@@ -94,6 +108,55 @@ function EventCard({ event, position }) {
 }
 
 export function HomePage() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(process.env.NEXT_PUBLIC_UX || 'https://api.buildnship.in/makemypass/public-form/uxport80/info/');
+        
+        if (response.data.hasError) {
+          throw new Error(response.data.message || 'Failed to fetch events');
+        }
+        
+        // Convert single event to array format for consistency
+        const eventData = response.data.response;
+        setEvents([eventData]);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching events:', err);
+        setError(err.message || 'Failed to fetch events');
+        // Fallback to empty array or could use hardcoded events as fallback
+        setEvents([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl font-urbanist">Loading events...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl font-urbanist text-red-500">
+          Error loading events: {error}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen">
       <div className="flex flex-col items-center md:gap-[81px] md:pt-[32px] md:pb-[160px] md:px-[120px]">
@@ -137,15 +200,21 @@ export function HomePage() {
           </div>
 
           {/* Dynamic Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 w-full">
-            {events.map((event, index) => {
-              const position =
-                index % 3 === 0 ? "left" : index % 3 === 1 ? "center" : "right";
-              return (
-                <EventCard key={event.id} event={event} position={position} />
-              );
-            })}
-          </div>
+          {events.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 w-full">
+              {events.map((event, index) => {
+                const position =
+                  index % 3 === 0 ? "left" : index % 3 === 1 ? "center" : "right";
+                return (
+                  <EventCard key={event.id} event={event} position={position} />
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center text-gray-500">
+              No events available at the moment.
+            </div>
+          )}
         </div>
       </div>
     </div>

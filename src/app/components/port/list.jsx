@@ -116,7 +116,7 @@ export function HomePage() {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(process.env.NEXT_PUBLIC_UX || 'https://api.buildnship.in/makemypass/public-form/uxport80/info/');
+        const response = await axios.get(process.env.NEXT_PUBLIC_UX);
         
         if (response.data.hasError) {
           throw new Error(response.data.message || 'Failed to fetch events');

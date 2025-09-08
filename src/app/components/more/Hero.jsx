@@ -1,4 +1,12 @@
-export default function HeroSection() {
+export default function HeroSection({ eventData }) {
+  // Strip HTML tags function
+  const stripHtmlTags = (html) => {
+    if (!html) return '';
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
+  };
+
   return (
     <section className="w-full relative">
       {/* Background UX:80 Pattern - positioned absolutely to span full width */}
@@ -18,9 +26,9 @@ export default function HeroSection() {
         <div className="mb-6">
           <div className="relative mb-4">
             <img
-              src="/UX.png"
-              alt="UX:80 Sunday Service Celebration"
-              className="w-full max-w-[584px] h-auto aspect-[584/316] object-cover shadow-[0_4px_9.2px_1px_rgba(0,0,0,0.10)] "
+              src={eventData?.banner || eventData?.logo || "/UX.png"}
+              alt={eventData?.title || "UX:80 Event"}
+              className="w-full max-w-[584px] h-auto aspect-[584/316] object-cover shadow-[0_4px_9.2px_1px_rgba(0,0,0,0.10)]"
             />
           </div>
 
@@ -30,6 +38,19 @@ export default function HeroSection() {
               (Watch Youtube Live)
             </span>
           </div>
+
+          {/* Event Title and Description */}
+          {eventData && (
+            <div className="mt-4 max-w-[584px]">
+              <h2 className="text-2xl font-bold font-urbanist text-black mb-2">
+                {eventData.title}
+              </h2>
+              <p className="text-base font-urbanist text-black/70">
+                {stripHtmlTags(eventData.description)?.substring(0, 150)}
+                {stripHtmlTags(eventData.description)?.length > 150 && '...'}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

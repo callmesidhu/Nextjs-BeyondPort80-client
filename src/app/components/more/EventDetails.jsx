@@ -1,4 +1,43 @@
-export default function EventDetails() {
+  const stripHtmlTags = (html) => {
+    if (!html) return '';
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
+  };
+
+
+    const formatDate = (dateString) => {
+    if (!dateString) return '13th Aug 2025';
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleDateString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+    
+    const getOrdinalSuffix = (day) => {
+      if (day > 3 && day < 21) return 'th';
+      switch (day % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+    
+    return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
+  };
+
+  // Format time function
+  const formatTime = (dateString) => {
+    if (!dateString) return '05:00 PM';
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: true 
+    });
+  };
+  
+export default function EventDetails({ eventData }) {
   return (
     <section className="w-full max-w-6xl mx-auto px-4 lg:px-8 py-8">
       <div className="flex flex-col lg:flex-row border-dashed border-[0.5px] border-black/60">
@@ -7,12 +46,12 @@ export default function EventDetails() {
           <div className="space-y-6">
             {/* Title */}
             <h2 className="text-2xl lg:text-4xl font-bold font-urbanist text-black leading-normal">
-The Invincible Layer of UX: Designing for the Mind, Not the Screen            </h2>
+              {eventData?.title || 'UX:80 - Demystifying Accessible Interface Design'}
+           </h2>
 
             {/* Description */}
             <p className="text-base font-urbanist text-black leading-7 tracking-[0.32px]">
-Join us for an engaging UX:80 session demystifying accessible interface design. Learn practical techniques for implementing WCAG guidelines, ensuring screen reader compatibility, and creating inclusive digital experiences for all users.
-
+{stripHtmlTags(eventData?.description) }
             </p>
 
             {/* Event Details */}
@@ -35,7 +74,7 @@ Join us for an engaging UX:80 session demystifying accessible interface design. 
                     <path d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="black" strokeOpacity="0.72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   <span className="text-base font-urbanist text-black/72 font-medium">
-                    05:00 PM
+                   {formatTime(eventData?.event_start_date)}
                   </span>
                 </div>
 
@@ -44,7 +83,7 @@ Join us for an engaging UX:80 session demystifying accessible interface design. 
                     <path d="M21 10H3M16 2V6M8 2V6M7.8 22H16.2C17.8802 22 18.7202 22 19.362 21.673C19.9265 21.3854 20.3854 20.9265 20.673 20.362C21 19.7202 21 18.8802 21 17.2V8.8C21 7.11984 21 6.27976 20.673 5.63803C20.3854 5.07354 19.9265 4.6146 19.362 4.32698C18.7202 4 17.8802 4 16.2 4H7.8C6.11984 4 5.27976 4 4.63803 4.32698C4.07354 4.6146 3.6146 5.07354 3.32698 5.63803C3 6.27976 3 7.11984 3 8.8V17.2C3 18.8802 3 19.7202 3.32698 20.362C3.6146 20.9265 4.07354 21.3854 4.63803 21.673C5.27976 22 6.11984 22 7.8 22Z" stroke="black" strokeOpacity="0.72" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   <span className="text-base font-urbanist text-black/72 font-medium">
-                    13th Aug 2025
+                    {formatDate(eventData?.event_start_date)}
                   </span>
                 </div>
               </div>
@@ -55,23 +94,23 @@ Join us for an engaging UX:80 session demystifying accessible interface design. 
         {/* Speaker Profile Section */}
         <div className="flex flex-col lg:flex-row border-t-dashed border-t-[0.5px] border-black/60 lg:border-t-0">
           {/* Speaker Image */}
-          <div className="w-52 lg:w-[248px]">
-            <img
-              src="/UXimg.png"
-              alt="Krishnan Ramachandran"
-              className="w-full h-full object-cover"
-            />
-          </div>
+         <div className="w-52 lg:w-[300px] h-72 md:h-full overflow-hidden relative">
+          <img
+            src={eventData?.banner}
+            alt="UX PORT Speaker"
+            className="w-full h-full object-cover object-right" 
+          />
+        </div>
 
           {/* Speaker Info */}
           <div className="flex-1 p-4 lg:p-6">
             <div className="space-y-2 max-w-[350px]">
               <h3 className="text-2xl lg:text-4xl font-semibold font-urbanist text-black">
-Krishnan Ramachandran              </h3>
+ {eventData?.speakers?.[0]?.name}            </h3>
               <p className="text-base font-urbanist text-black font-medium">
-Manager-UX, Reflection Infosystems              </p>
+{eventData?.speakers?.[0]?.position}             </p>
               <p className="text-base font-urbanist text-black/72 leading-7 tracking-[0.32px]">
-Krishnan Ramachandran, Manager – UX at Reflections Infosystems, has 27+ years of experience delivering user-centered, business-aligned digital products. He leads end-to-end UX—from discovery and analysis to wireframing, prototyping, and branding—turning complex ideas into clear, interactive solutions. Known for a client-first approach, he builds strong partnerships and drives accessible, high-impact outcomes.              </p>
+              {eventData?.speakers?.[0]?.bio} </p>
             </div>
           </div>
         </div>

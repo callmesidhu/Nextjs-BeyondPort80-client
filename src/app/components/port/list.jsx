@@ -113,14 +113,14 @@ function EventCard({ event, position }) {
 
         {/* Action Button */}
         {!isPast ? (
-          <a
+          <div
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal transition-colors bg-[#87C041] hover:bg-[#87C041]/90 text-white"
             onClick={(e) => e.stopPropagation()} // prevent triggering parent link
           >
             Book Tickets Now
-          </a>
+          </div>
         ) : (
           <div className="flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal bg-gray-300 text-gray-500 cursor-not-allowed">
             Past Event
@@ -140,7 +140,7 @@ function EventCard({ event, position }) {
   );
 }
 
-export function HomePage() {
+export function CurrentEvents() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

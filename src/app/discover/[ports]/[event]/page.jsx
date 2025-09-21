@@ -17,10 +17,9 @@ export default function Page() {
       try {
         setLoading(true);
         const response = await axios.get(
-          process.env.NEXT_PUBLIC_UX || 
-          'https://api.buildnship.in/makemypass/public-form/uxport80/info/'
+          process.env.NEXT_PUBLIC_UX_LIVE
         );
-        
+
         if (response.data.hasError) {
           throw new Error(response.data.message || 'Failed to fetch event data');
         }

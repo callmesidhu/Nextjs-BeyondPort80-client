@@ -103,16 +103,33 @@ export default function EventDetails({ eventData }) {
         </div>
 
           {/* Speaker Info */}
-          <div className="flex-1 p-4 lg:p-6">
-            <div className="space-y-2 max-w-[350px]">
-              <h3 className="text-2xl lg:text-4xl font-semibold font-urbanist text-black">
- {eventData?.speakers?.[0]?.name}            </h3>
-              <p className="text-base font-urbanist text-black font-medium">
-{eventData?.speakers?.[0]?.position}             </p>
-              <p className="text-base font-urbanist text-black/72 leading-7 tracking-[0.32px]">
-              {eventData?.speakers?.[0]?.bio} </p>
-            </div>
-          </div>
+          <div className="flex-1 p-4 lg:p-6 flex flex-col h-full">
+  <div className="space-y-2 max-w-[350px] flex-1">
+    <h3 className="text-2xl lg:text-4xl font-semibold font-urbanist text-black">
+      {eventData?.speakers?.[0]?.name}
+    </h3>
+    <p className="text-base font-urbanist text-black font-medium">
+      {eventData?.speakers?.[0]?.position}
+    </p>
+    <p className="text-base font-urbanist text-black/72 leading-7 tracking-[0.32px]">
+      {eventData?.speakers?.[0]?.bio}
+    </p>
+  </div>
+
+  {/* Book Tickets Button at Bottom */}
+  <div className="mt-auto pt-4">
+    <a
+      href={`https://makemypass.com/event/${event.name}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal transition-colors bg-[#87C041] hover:bg-[#87C041]/90 text-white"
+      onClick={(e) => e.stopPropagation()} // prevent triggering parent link
+    >
+      Book Tickets Now
+    </a>
+  </div>
+</div>
+
         </div>
       </div>
     </section>

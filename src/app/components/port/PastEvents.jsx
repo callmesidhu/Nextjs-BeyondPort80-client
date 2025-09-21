@@ -54,24 +54,16 @@ function EventCard({ event, position }) {
     <div
       className={`flex flex-col m-5 ${borderClasses[position]} ${
         isPast
-          ? "opacity-50 cursor-not-allowed"
+          ? "cursor-not-allowed" // fully opaque now
           : "hover:shadow-lg transition-shadow"
       }`}
     >
       {/* Card Image */}
-      {isPast ? (
-        <img
-          src={event.banner || event.logo || "/UX.png"}
-          alt={event.title}
-          className="w-full h-[185px] grayscale"
-        />
-      ) : (
-        <img
-          src={event.banner || event.logo || "/UX.png"}
-          alt={event.title}
-          className="w-full h-[185px]"
-        />
-      )}
+      <img
+        src={event.banner || event.logo || "/UX.png"}
+        alt={event.title}
+        className={`w-full h-[185px] ${isPast ? "grayscale" : ""}`}
+      />
 
       {/* Card Body */}
       <div className="flex flex-col gap-6 px-2 py-6">
@@ -97,7 +89,7 @@ function EventCard({ event, position }) {
           <div className="flex items-center gap-2">
             <MapPin className="w-6 h-6 text-black/70" strokeWidth={2} />
             <span className="font-urbanist text-base text-black/70">
-              ICFOSS, Greenfield Stadium, Trivandrum
+              {event.place || "Venue TBA"}
             </span>
           </div>
 
@@ -106,26 +98,17 @@ function EventCard({ event, position }) {
             <span className="font-urbanist text-base text-black/70">
               {event.speakers && event.speakers.length > 0
                 ? event.speakers[0].name
-                : "TBA"}
+                : ""}
             </span>
           </div>
         </div>
 
-        {/* Action Button */}
-        {!isPast ? (
-          <div
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal transition-colors bg-[#87C041] hover:bg-[#87C041]/90 text-white"
-            onClick={(e) => e.stopPropagation()} // prevent triggering parent link
-          >
-            Book Tickets Now
-          </div>
-        ) : (
-          <div className="flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal bg-gray-300 text-gray-500 cursor-not-allowed">
-            Past Event
-          </div>
-        )}
+        {/* Completed Button */}
+        <div
+          className="flex h-14 justify-center items-center gap-[10px] font-urbanist text-xl font-normal transition-colors bg-[#959595] text-white cursor-not-allowed"
+        >
+          Completed
+        </div>
       </div>
     </div>
   );
@@ -140,7 +123,7 @@ function EventCard({ event, position }) {
   );
 }
 
-export function CurrentEvents() {
+export function PastEvents() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -149,12 +132,18 @@ export function CurrentEvents() {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const liveRes = await axios.get(process.env.NEXT_PUBLIC_UX_LIVE);
+        const liveRes = await axios.get(process.env.NEXT_PUBLIC_UX_PAST);
         if (liveRes.data.hasError) {
           throw new Error(liveRes.data.message || "Failed to fetch events");
         }
-        const liveData = liveRes.data.response;
-        const liveEvents = [liveData].map((e) => ({ ...e, isPast: false }));
+        const liveData = liveRes.data.response.events.Completed;
+
+        // Mark past events based on event_end_date
+        const now = new Date();
+        const liveEvents = liveData.map((e) => ({
+          ...e,
+          isPast: new Date(e.event_end_date) < now,
+        }));
 
         setEvents(liveEvents);
         setError(null);
@@ -192,43 +181,6 @@ export function CurrentEvents() {
       <div className="flex flex-col items-center md:gap-[81px] md:pt-[32px] md:pb-[160px] md:px-[120px]">
         {/* Hero Section */}
         <div className="flex flex-col items-center gap-[72px] w-full md:max-w-[1138px]">
-          <div className="flex flex-col items-center gap-4 md:w-[653px] w-[300px]">
-            <h1 className="font-urbanist text-[64px] font-bold text-black text-center leading-normal">
-              UX:80
-            </h1>
-            <p className="font-urbanist text-xl text-black text-center">
-              Connect with UX enthusiasts to design user-centric experiences.
-            </p>
-
-            {/* Static Event Info */}
-            <div className="mt-4 flex flex-row flex-wrap gap-6">
-              <div className="flex items-center gap-2">
-                <Clock className="w-6 h-6 text-black/70" />
-                <span className="font-urbanist text-base text-black/70">
-                  05:00 PM
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <Calendar className="w-6 h-6 text-black/70" />
-                <span className="font-urbanist text-base text-black/70">
-                  Every First Wednesday
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <MapPin className="w-6 h-6 text-black/70" />
-                <span className="font-urbanist text-base text-black/70">
-                  ICFOSS, Greenfield Stadium, Trivandrum
-                </span>
-              </div>
-            </div>
-
-            <p className="mt-2 font-urbanist text-base text-black text-center">
-              Contact Team: uxport80@gmail.com
-            </p>
-          </div>
-
           {/* Dynamic Events Grid */}
           {events.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 w-full">

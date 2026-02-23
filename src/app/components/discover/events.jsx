@@ -8,13 +8,13 @@ const locationTags = ["Trivandrum", "Kochi", "Kozhikode", "Bangalore", "Hyderaba
 
 const events = [
   { id: 1, title: "UX:80", location: "Trivandrum,Kerala", fontFamily: "font-vina-sans", fontSize: "text-4xl sm:text-5xl lg:text-7xl xl:text-8xl", style: "tracking-wide", tags: ["Design Thinking", "User Flow", "UI Kits"], slug: "ux", active: true },
-  { id: 2, title: "AI:80", location: "Trivandrum,Kerala", fontFamily: "font-unbounded", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold", tags: ["ML", "LLMs", "AI Ethics"], slug: "ai", active: false },
-  { id: 3, title: "BLOCK\nCHAIN", location: "Kottayam,Kerala", fontFamily: "font-satoshi", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-black tracking-wide", tags: ["Web3", "Smart Contracts", "DAOs"], slug: "blockchain", active: false },
-  { id: 4, title: "CYBER\nSECURITY", location: "Trivandrum,Kerala", fontFamily: "font-advio", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["Pen Testing", "Zero Trust", "Firewalls"], slug: "cybersecurity", active: false },
-  { id: 5, title: "Data Science.", location: "Trivandrum,Kerala", fontFamily: "font-poppins", fontSize: "text-2xl sm:text-3xl lg:text-3xl xl:text-4xl", style: "font-semibold leading-tight tracking-wide", tags: ["Python", "Pandas", "Data Viz"], slug: "datascience", active: false },
-  { id: 6, title: "VR:80", location: "Kozhikode ,Kerala", fontFamily: "font-epilogue", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold italic tracking-wide", tags: ["Immersion", "Metaverse", "Unity"], slug: "vr", active: false },
+  { id: 2, title: "AI:80", location: "Trivandrum,Kerala", fontFamily: "font-unbounded", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold", tags: ["ML", "LLMs", "AI Ethics"], slug: "ai", active: true },
+  { id: 3, title: "Comics:80", location: "Trivandrum,Kerala", fontFamily: "font-satoshi", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-black tracking-wide", tags: ["Web3", "Smart Contracts", "DAOs"], slug: "comics", active: true },
+  { id: 4, title: "EV:80", location: "Trivandrum,Kerala", fontFamily: "font-advio", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["Pen Testing", "Zero Trust", "Firewalls"], slug: "ev", active: true },
+  { id: 5, title: "Space:80", location: "Trivandrum,Kerala", fontFamily: "font-poppins", fontSize: "text-2xl sm:text-3xl lg:text-3xl xl:text-4xl", style: "font-semibold leading-tight tracking-wide", tags: ["Python", "Pandas", "Data Viz"], slug: "space", active: true },
+  { id: 6, title: "AEC&B:80", location: "Trivandrum,Kerala", fontFamily: "font-epilogue", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "font-bold italic tracking-wide", tags: ["Immersion", "Metaverse", "Unity"], slug: "aecb", active: true },
   { id: 7, title: "Game:80", location: "Trivandrum,Kerala", fontFamily: "font-tiny5", fontSize: "text-2xl sm:text-3xl lg:text-4xl xl:text-5xl", style: "tracking-wide", tags: ["8-bit", "Indie Games", "Pixel Art"], slug: "game", active: false },
-  { id: 8, title: "IoT:80", location: "Kochi, Kerala", fontFamily: "font-antonio", fontSize: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl", style: "tracking-widest", tags: ["Arduino", "Sensors", "Edge AI"], slug: "iot", active: false }
+  { id: 8, title: "IoT:80", location: "Trivandrum,Kerala", fontFamily: "font-antonio", fontSize: "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl", style: "tracking-widest", tags: ["Arduino", "Sensors", "Edge AI"], slug: "iot", active: false }
 ];
 
 const tagVariants = {
@@ -88,24 +88,20 @@ export function EventsGrid() {
                   onMouseEnter={event.active ? handleMouseEnter : undefined}
                   onMouseLeave={event.active ? handleMouseLeave : undefined}
                   onClick={() => handleCardClick(event.slug, event.active)}
-                  className={`relative h-72 lg:h-80 p-6 sm:p-8 lg:p-12 flex flex-col justify-center items-center text-center transition-colors ${
-                    event.active
-                      ? "bg-white hover:bg-gray-50 cursor-pointer"
-                      : "bg-gray-200 opacity-60 cursor-not-allowed"
-                  }`}
+                  className={`relative h-72 lg:h-80 p-6 sm:p-8 lg:p-12 flex flex-col justify-center items-center text-center transition-colors ${event.active
+                    ? "bg-white hover:bg-gray-50 cursor-pointer"
+                    : "bg-gray-200 opacity-60 cursor-not-allowed"
+                    }`}
                 >
                   {/* Inner borders */}
                   <div
-                    className={`absolute bottom-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${
-                      isLastRowLg ? "lg:hidden" : "lg:block"
-                    } ${isLastRowSm ? "sm:hidden lg:hidden" : "sm:block"} ${
-                      index === events.length - 1 ? "hidden sm:hidden" : "block sm:hidden"
-                    }`}
+                    className={`absolute bottom-0 left-0 right-0 h-px bg-[repeating-linear-gradient(to_right,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastRowLg ? "lg:hidden" : "lg:block"
+                      } ${isLastRowSm ? "sm:hidden lg:hidden" : "sm:block"} ${index === events.length - 1 ? "hidden sm:hidden" : "block sm:hidden"
+                      }`}
                   ></div>
                   <div
-                    className={`absolute  top-0 right-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${
-                      isLastInRowLg ? "lg:hidden" : ""
-                    } ${isLastInRowSm ? "sm:hidden lg:block" : ""}`}
+                    className={`absolute  top-0 right-0 bottom-0 w-px bg-[repeating-linear-gradient(to_bottom,rgba(0,0,0,0.5)_0px,rgba(0,0,0,0.5)_10px,transparent_10px,transparent_20px)] ${isLastInRowLg ? "lg:hidden" : ""
+                      } ${isLastInRowSm ? "sm:hidden lg:block" : ""}`}
                   ></div>
 
                   {/* Content */}

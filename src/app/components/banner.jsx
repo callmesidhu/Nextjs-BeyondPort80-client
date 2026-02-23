@@ -17,10 +17,10 @@ export default function InfiniteScrollBanner() {
   const rafRef = useRef(null);
   const isPausedRef = useRef(false);  // pause on hover
 
-  // Fetch images
+  // Fetch images via our own proxy route (avoids CORS on the external API)
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_API_BASE}/api/landing/show`)
+      .get("/api/landing")
       .then((res) => setImages(res.data))
       .catch((err) => console.error("Banner fetch error:", err))
       .finally(() => setLoaded(true));
